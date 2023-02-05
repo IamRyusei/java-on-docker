@@ -1,5 +1,7 @@
 # Java on Docker
-Collection of Docker images that provides multiple distributions and versions of the Java platform binaries (JRE/JDK) for different base images.
+A collection of Docker images that provides multiple distributions and versions of the Java platform binaries (JRE/JDK) for different base images.
+
+[![Build, Test and Deploy Docker Images](https://github.com/iamryusei/java-on-docker/actions/workflows/workflow.yml/badge.svg?branch=master)](https://github.com/iamryusei/java-on-docker/actions/workflows/workflow.yml)
 
 The purpose of this repository is to provide a collection of Docker images that can be used as a base to build Java applications
 or workflows. It is possible to pull the images directly from a remote repository to create your container, or to use them as a
@@ -83,7 +85,7 @@ interactive console to print the version of Java.
 For example, issuing the following commands:
 ```
 > docker pull ghcr.io/iamryusei/java-on-debian11-slim:zulu-8-jre
-> docker run ghcr.io/iamryusei/java-on-debian11-slim:zulu-8-jre
+> docker run --rm ghcr.io/iamryusei/java-on-debian11-slim:zulu-8-jre
 ```
 
 Will produce the following output:
@@ -117,7 +119,7 @@ ENTRYPOINT java HelloWorld
 Then, issuing the following commands:
 ```
 > docker build -t helloworldjava .
-> docker run helloworldjava
+> docker run --rm helloworldjava
 ```
 
 Will produce the following output:
