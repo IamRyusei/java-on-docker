@@ -52,10 +52,10 @@ It the next paragraphs it will be explained in details which are the possible va
 
 ### ${base-image}
 The available options to use for this field, at least currently, are:
-- `debian10`
-- `debian10-slim`
-- `debian11`
-- `debian11-slim`
+- `debian-10`
+- `debian-10-slim`
+- `debian-11`
+- `debian-11-slim`
 
 ### ${java-distribution}
 The available options to use for this field, at least currently, are:
