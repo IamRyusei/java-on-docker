@@ -1,0 +1,80 @@
+# This file defines a GitHub workflow that is triggered when
+# either a commit is pushed into the 'master' branch, or a
+# pull request is merged into the 'master' branch.
+# The workflow operates as it follows:
+# 1. Checkout the changes from the commit or pull request
+# 2. Build multiple Docker images from different build arguments
+# 3. Test the Docker images using Container Structure Test (https://github.com/GoogleContainerTools/container-structure-test)
+# 4. Deploy the images on GitHub Container Registry (ghcr.io)
+#
+# Author: Leonardo Spaccini <leonardo.spaccini.gtr@gmail.com>
+
+name: Build, Test and Deploy Docker Images
+on:
+  push:
+    branches:
+      - master
+jobs:
+  prepare-build-matrix:
+    name: Prepare Build Matrix
+    runs-on: ubuntu-22.04
+    permissions:
+      contents: read
+    outputs:
+      matrix: ${{steps.load-matrix-from-file.outputs.matrix}}
+    steps:
+    - id: checkout
+      name: Checkout
+      uses: actions/checkout@v3.3.0
+    - id: load-matrix-from-file
+      name: Load Matrix From File
+      uses: JoshuaTheMiller/conditional-build-matrix@v1.0.1
+      with:
+          inputFile: .github/workflows/matrix_includes.json
+          addInclude: true
+          filter: '[*]'
+  build-test-and-deploy:
+    name: Build, Test and Deploy Docker Image
+    runs-on: ubuntu-22.04
+    permissions:
+      contents: read
+      packages: write
+    needs: prepare-build-matrix
+    strategy:
+      fail-fast: false
+      matrix: ${{fromJson(needs.prepare-build-matrix.outputs.matrix)}}
+    steps:
+      - id: checkout
+        name: Checkout
+        uses: actions/checkout@v3.3.0
+      - id: prepare-docker-image-tag
+        name: Prepare Docker Image Tag
+        run: |-
+          echo "DOCKER_IMAGE_TAG=${{github.actor}}/java-on-${{matrix.BASE_IMAGE_NAME}}-${{matrix.BASE_IMAGE_VERSION}}:${{matrix.JAVA_PLATFORM_NAME}}" >> $GITHUB_ENV
+      - id: build-docker-image
+        name: Build Docker Image
+        run: >
+          docker build -t ${{env.DOCKER_IMAGE_TAG}}
+          --build-arg BASE_IMAGE_VERSION='${{matrix.BASE_IMAGE_VERSION}}'
+          --build-arg JAVA_PLATFORM_NAME='${{matrix.JAVA_PLATFORM_NAME}}'
+          --build-arg JAVA_DOWNLOAD_URL='${{matrix.JAVA_DOWNLOAD_URL}}'
+          --build-arg JAVA_CHECKSUM_SHA256='${{matrix.JAVA_CHECKSUM_SHA256}}'
+          ./src/${{matrix.BASE_IMAGE_NAME}}
+      - id: test-docker-image
+        name: Test Docker Image
+        uses: brpaz/structure-tests-action@v1.1.2
+        with:
+          image: ${{env.DOCKER_IMAGE_TAG}}
+          configFile: test/container-test.yml
+      - id: auth-to-ghcr
+        name: Authenticate to GitHub Container Registry 
+        uses: docker/login-action@v2.1.0
+        with:
+          registry: ghcr.io
+          username: ${{github.actor}}
+          password: ${{secrets.GITHUB_TOKEN}}
+      - id: deploy-docker-image
+        name: Deploy Docker Image
+        run: |-
+          docker tag ${{env.DOCKER_IMAGE_TAG}} ghcr.io/${{env.DOCKER_IMAGE_TAG}}
+          docker push ghcr.io/${{env.DOCKER_IMAGE_TAG}}

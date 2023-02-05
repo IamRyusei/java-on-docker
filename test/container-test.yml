@@ -1,0 +1,19 @@
+# This file defines the configuration for the Container Structure Test tool
+# (https://github.com/GoogleContainerTools/container-structure-test) which
+# allows to test an existing Docker image.
+#
+# The goal of this test is to simply check if Java (either a JRE or JDK)
+# is installed correctly.
+#
+# Author: Leonardo Spaccini <leonardo.spaccini.gtr@gmail.com>
+
+# Note: for unknown reasons, some Java implementations prints 
+# the output of the "java -version" command to the stderr...
+# In this test it is just checked that the command returns with a zero,
+# otherwise it means that Java is not installed correctly.
+schemaVersion: 2.0.0
+commandTests:
+  - name: "Check Java Version"
+    command: "java"
+    args: ["-version"]
+    exitCode: 0
