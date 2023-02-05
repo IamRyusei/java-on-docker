@@ -84,8 +84,8 @@ interactive console to print the version of Java.
 
 For example, issuing the following commands:
 ```
-> docker pull ghcr.io/iamryusei/java-on-debian11-slim:zulu-8-jre
-> docker run --rm ghcr.io/iamryusei/java-on-debian11-slim:zulu-8-jre
+> docker pull ghcr.io/iamryusei/java-on-debian-11-slim:zulu-8-jre
+> docker run --rm ghcr.io/iamryusei/java-on-debian-11-slim:zulu-8-jre
 ```
 
 Will produce the following output:
@@ -105,7 +105,7 @@ image is required) and executed inside the container.
 
 First create the `Dockerfile` with the following content:
 ```Dockerfile
-FROM ghcr.io/iamryusei/java-on-debian11-slim:zulu-8-jdk
+FROM ghcr.io/iamryusei/java-on-debian-11-slim:zulu-8-jdk
 
 WORKDIR /opt/helloworld/
 RUN echo "public class HelloWorld {             \
