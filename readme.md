@@ -41,8 +41,8 @@ Therefore, the first part of the tag is always used to describe which base image
 (including the base image version and flavour), while the second part describes which Java binaries are installed.
 
 This naming convention is convenient because it is usually always possible to choose the base image and the
-Java binaries **independently**, which means that any value of `${base-image}` is available with any value
-of `${java-distribution}-${java-version}-${java-type}`.
+Java binaries (almost) **independently**, which means that any value of `${base-image}` is available with (almost)
+any value of `${java-distribution}-${java-version}-${java-type}`.
 
 However, regarding the second part of the tag, note that not every combination of `${java-distribution}`,
 `${java-version}` and `${java-type}` is always available, so that selecting a proper combination may require
@@ -52,10 +52,13 @@ It the next paragraphs it will be explained in details which are the possible va
 
 ### ${base-image}
 The available options to use for this field, at least currently, are:
+- `alpine-3.17`
+- `centos-7`
 - `debian-10`
 - `debian-10-slim`
 - `debian-11`
 - `debian-11-slim`
+- `ubuntu-23.04`
 
 ### ${java-distribution}
 The available options to use for this field, at least currently, are:
@@ -68,13 +71,15 @@ that was specified for the \
 `${java-distribution}`.
 The following table contains the possible options for any combination of the three parameters:
 
-| ${java-distribution} | ${java-version} | ${java-type}                     |
-| :------------------- | :-------------- | :------------------------------- |
-| `zulu`               | `6`             | `jdk`                            |
-| `zulu`               | `7`             | `jdk`                            |
-| `zulu`               | `8`             | `jre`, `jre-fx`, `jdk`, `jdk-fx` |
-| `zulu`               | `11`            | `jre`, `jre-fx`, `jdk`, `jdk-fx` |
-| `zulu`               | `17`            | `jre`, `jre-fx`, `jdk`, `jdk-fx` |
+| ${java-distribution} | ${java-version} | ${java-type}                         |
+| :------------------- | :-------------- | :----------------------------------- |
+| `zulu`               | `6`\*           | `jdk`                                |
+| `zulu`               | `7`\*           | `jdk`                                |
+| `zulu`               | `8`             | `jre`, `jre-fx`\*, `jdk`, `jdk-fx`\* |
+| `zulu`               | `11`            | `jre`, `jre-fx`\*, `jdk`, `jdk-fx`\* |
+| `zulu`               | `17`            | `jre`, `jre-fx`\*, `jdk`, `jdk-fx`\* |
+
+[*] = not available for `alpine`
 
 ## Usage Example (Console)
 Once that a specific Docker image tag has been identified you can verify that
