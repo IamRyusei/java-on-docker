@@ -45,6 +45,7 @@ RUN wget $JAVA_DOWNLOAD_URL --no-verbose --output-document=/tmp/java-binaries.ta
 # Contains labels following the Open Container Initiative (https://opencontainers.org/).
 FROM debian:${BASE_IMAGE_VERSION}
 
+ARG BASE_IMAGE_VERSION
 LABEL \
     org.opencontainers.image.title="Java on Debian" \
     org.opencontainers.image.description="A collection of Docker images based on \"debian:$BASE_IMAGE_VERSION\" that provides specific distributions and versions of the Java platform binaries." \
@@ -56,7 +57,7 @@ LABEL \
     org.opencontainers.image.license="Unlicense"
 
 ARG JAVA_PLATFORM_NAME
-ARG JAVA_HOME="/opt/java/$JAVA_BINARIES_NAME"
+ARG JAVA_HOME="/opt/java/$JAVA_PLATFORM_NAME"
 
 ENV JAVA_HOME=$JAVA_HOME \
     PATH=$PATH:$JAVA_HOME/bin
