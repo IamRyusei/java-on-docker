@@ -62,6 +62,7 @@ The available options to use for this field, at least currently, are:
 
 ### ${java-distribution}
 The available options to use for this field, at least currently, are:
+- `corretto`: the "Amazon Corretto" JVM is the Amazon's build of the OpenJDK sources, distributed under the [GPLv2 with CPE](https://openjdk.org/legal/gplv2+ce.html) license.
 - `zulu`: the "Zulu Community" JVM is the Azul Systems's build of the OpenJDK sources, distributed under their [terms of use](https://www.azul.com/products/core/openjdk-terms-of-use/).
 
 ### ${java-version}
