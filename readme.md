@@ -73,6 +73,9 @@ The following table contains the possible options for any combination of the thr
 
 | ${java-distribution} | ${java-version} | ${java-type}                         |
 | :------------------- | :-------------- | :----------------------------------- |
+| `corretto`           | `8`             | `jdk`,                               |
+| `corretto`           | `11`            | `jdk`,                               |
+| `corretto`           | `17`            | `jdk`,                               |
 | `zulu`               | `6`\*           | `jdk`                                |
 | `zulu`               | `7`\*           | `jdk`                                |
 | `zulu`               | `8`             | `jre`, `jre-fx`\*, `jdk`, `jdk-fx`\* |

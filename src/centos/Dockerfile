@@ -34,7 +34,7 @@ RUN yum install wget -y
 ARG JAVA_DOWNLOAD_URL
 ARG JAVA_CHECKSUM_SHA256
 
-RUN wget $JAVA_DOWNLOAD_URL --no-verbose --output-document=/tmp/java-binaries.tar.gz \
+RUN wget -4 $JAVA_DOWNLOAD_URL --no-verbose --output-document=/tmp/java-binaries.tar.gz \
     && echo "$JAVA_CHECKSUM_SHA256 /tmp/java-binaries.tar.gz" | sha256sum --check \
     && mkdir -p /tmp/java-binaries \
     && tar -xzf /tmp/java-binaries.tar.gz -C /tmp/java-binaries --strip-components=1 \
