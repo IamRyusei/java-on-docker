@@ -63,6 +63,7 @@ The available options to use for this field, at least currently, are:
 ### ${java-distribution}
 The available options to use for this field, at least currently, are:
 - `corretto`: the "Amazon Corretto" JVM is the Amazon's build of the OpenJDK sources, distributed under the [GPLv2 with CPE](https://openjdk.org/legal/gplv2+ce.html) license.
+- `temurin`: the "Eclipse Temurin" JVM is the Eclipse Adoptium Working Group's build of the OpenJDK sources, distributed under the [GPLv2 with CPE](https://openjdk.org/legal/gplv2+ce.html) license.
 - `zulu`: the "Zulu Community" JVM is the Azul Systems's build of the OpenJDK sources, distributed under their [terms of use](https://www.azul.com/products/core/openjdk-terms-of-use/).
 
 ### ${java-version}
@@ -77,6 +78,9 @@ The following table contains the possible options for any combination of the thr
 | `corretto`           | `8`             | `jdk`                                |
 | `corretto`           | `11`            | `jdk`                                |
 | `corretto`           | `17`            | `jdk`                                |
+| `temurin`            | `8`             | `jre`, `jdk`                         |
+| `temurin`            | `11`            | `jre`, `jdk`                         |
+| `temurin`            | `17`            | `jre`, `jdk`                         |
 | `zulu`               | `6`\*           | `jdk`                                |
 | `zulu`               | `7`\*           | `jdk`                                |
 | `zulu`               | `8`             | `jre`, `jre-fx`\*, `jdk`, `jdk-fx`\* |
@@ -93,15 +97,15 @@ interactive console to print the version of Java.
 
 For example, issuing the following commands:
 ```
-> docker pull ghcr.io/iamryusei/java-on-debian-11-slim:zulu-8-jre
-> docker run --rm ghcr.io/iamryusei/java-on-debian-11-slim:zulu-8-jre
+> docker pull ghcr.io/iamryusei/java-on-alpine-3.17:zulu-8-jre
+> docker run --rm ghcr.io/iamryusei/java-on-alpine-3.17:zulu-8-jre
 ```
 
 Will produce the following output:
 ```
 openjdk version "1.8.0_362"
-OpenJDK Runtime Environment (Zulu 8.68.0.21-CA-linux64) (build 1.8.0_362-b09)
-OpenJDK 64-Bit Server VM (Zulu 8.68.0.21-CA-linux64) (build 25.362-b09, mixed mode)
+OpenJDK Runtime Environment (Zulu 8.68.0.21-CA-linux-musl-x64) (build 1.8.0_362-b09)
+OpenJDK 64-Bit Server VM (Zulu 8.68.0.21-CA-linux-musl-x64) (build 25.362-b09, mixed mode)
 ```
 
 ## Usage Example (Dockerfile)
@@ -114,7 +118,7 @@ image is required) and executed inside the container.
 
 First create the `Dockerfile` with the following content:
 ```Dockerfile
-FROM ghcr.io/iamryusei/java-on-debian-11-slim:zulu-8-jdk
+FROM ghcr.io/iamryusei/java-on-alpine-3.17:zulu-8-jdk
 
 WORKDIR /opt/helloworld/
 RUN echo "public class HelloWorld {             \
