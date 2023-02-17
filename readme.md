@@ -1,7 +1,7 @@
 # Java on Docker
 A collection of Docker images that provides multiple distributions and versions of the Java platform binaries (JRE/JDK) for different base images.
 
-[![Build, Test and Deploy Docker Images](https://github.com/iamryusei/java-on-docker/actions/workflows/workflow.yml/badge.svg?branch=master)](https://github.com/iamryusei/java-on-docker/actions/workflows/workflow.yml)
+[![Build and Deploy Docker Images](https://github.com/iamryusei/java-on-docker/actions/workflows/continous-delivery.yml/badge.svg)](https://github.com/iamryusei/java-on-docker/actions/workflows/continous-delivery.yml)
 
 The purpose of this repository is to provide a collection of Docker images that can be used as a base to build Java applications
 or workflows. It is possible to pull the images directly from a remote repository to create your container, or to use them as a
