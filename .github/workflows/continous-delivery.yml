@@ -73,8 +73,8 @@ jobs:
         id: deploy-docker-image
         name: Deploy Docker Image
         run: |-
-          docker tag ${{env.DOCKER_IMAGE_TAG}} ghcr.io/${{env.DOCKER_IMAGE_TAG}}
-          docker push ghcr.io/${{env.DOCKER_IMAGE_TAG}}
+          docker tag ${{env.DOCKER_IMAGE_NAME}} ghcr.io/${{env.DOCKER_IMAGE_NAME}}
+          docker push ghcr.io/${{env.DOCKER_IMAGE_NAME}}
       - 
         id: clear-old-cache
         run: |
