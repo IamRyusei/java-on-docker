@@ -77,15 +77,3 @@ jobs:
         run: |
           rm -rf /tmp/.buildx-cache
           mv /tmp/.buildx-cache-latest /tmp/.buildx-cache
-  merge:
-    runs-on: ubuntu-22.04
-    needs: build-and-test
-    strategy:
-      fail-fast: false
-      matrix: ${{fromJson(needs.prepare-build-matrix.outputs.matrix)}}
-    steps:
-      - 
-        id: automerge
-        uses: "pascalgn/automerge-action@v0.15.5"
-        env:
-          GITHUB_TOKEN: "${{secrets.GITHUB_TOKEN}}"
