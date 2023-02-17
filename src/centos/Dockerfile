@@ -26,8 +26,8 @@
 # to download different base images when building this Dockerfile.
 # Additionally, wget is installed before declaring the build arguments, so that the
 # cached layer may be resued with different build arguments.
-ARG BASE_IMAGE_VERSION
-FROM centos:${BASE_IMAGE_VERSION} AS build-stage
+ARG BASE_IMAGE_TAG
+FROM centos:${BASE_IMAGE_TAG} AS build-stage
 
 RUN yum install wget -y
 
@@ -43,12 +43,12 @@ RUN wget -4 $JAVA_DOWNLOAD_URL --no-verbose --output-document=/tmp/java-binaries
 
 # Final stage
 # Contains labels following the Open Container Initiative (https://opencontainers.org/).
-FROM centos:${BASE_IMAGE_VERSION}
+FROM centos:${BASE_IMAGE_TAG}
 
-ARG BASE_IMAGE_VERSION
+ARG BASE_IMAGE_TAG
 LABEL \
     org.opencontainers.image.title="Java on CentOS" \
-    org.opencontainers.image.description="A collection of Docker images based on \"centos:$BASE_IMAGE_VERSION\" that provides specific distributions and versions of the Java platform binaries." \
+    org.opencontainers.image.description="A collection of Docker images based on \"centos:$BASE_IMAGE_TAG\" that provides specific distributions and versions of the Java platform binaries." \
     org.opencontainers.image.url="https://github.com/iamryusei/java-on-docker" \
     org.opencontainers.image.version="1.0.0" \
     org.opencontainers.image.revision="" \
