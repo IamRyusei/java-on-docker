@@ -63,7 +63,8 @@ The available options to use for this field, at least currently, are:
 ### ${java-distribution}
 The available options to use for this field, at least currently, are:
 - `corretto`: the "Amazon Corretto" JVM is the Amazon's build of the OpenJDK sources, distributed under the [GPLv2 with CPE](https://openjdk.org/legal/gplv2+ce.html) license.
-- `temurin`: the "Eclipse Temurin" JVM is the Eclipse Adoptium Working Group's build of the OpenJDK sources, distributed under the [GPLv2 with CPE](https://openjdk.org/legal/gplv2+ce.html) license.
+- `semeru`: the "Semeru Runtimes Open Edition" is the IBM's build of the OpenJDK sources bundled with the Eclipse OpenJ9 VM, distributed under the [GPLv2 with CPE](https://openjdk.org/legal/gplv2+ce.html) license. These binaries were formerly distributed as part of the AdoptOpenJDK project.
+- `temurin`: the "Eclipse Temurin" JVM is the Eclipse Adoptium Working Group's build of the OpenJDK sources bundled with the Oracle HotSpot VM, distributed under the [GPLv2 with CPE](https://openjdk.org/legal/gplv2+ce.html) license. These binaries were formerly distributed as part of the AdoptOpenJDK project.
 - `zulu`: the "Zulu Community" JVM is the Azul Systems's build of the OpenJDK sources, distributed under their [terms of use](https://www.azul.com/products/core/openjdk-terms-of-use/).
 
 ### ${java-version}
@@ -78,6 +79,9 @@ The following table contains the possible options for any combination of the thr
 | `corretto`           | `8`             | `jdk`                                |
 | `corretto`           | `11`            | `jdk`                                |
 | `corretto`           | `17`            | `jdk`                                |
+| `semeru`             | `8`\*           | `jre`, `jdk`                         |
+| `semeru`             | `11`\*          | `jre`, `jdk`                         |
+| `semeru`             | `17`\*          | `jre`, `jdk`                         |
 | `temurin`            | `8`             | `jre`, `jdk`                         |
 | `temurin`            | `11`            | `jre`, `jdk`                         |
 | `temurin`            | `17`            | `jre`, `jdk`                         |
