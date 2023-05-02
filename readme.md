@@ -52,13 +52,20 @@ It the next paragraphs it will be explained in details which are the possible va
 
 ### ${base-image}
 The available options to use for this field, at least currently, are:
-- `alpine-3.17`
-- `centos-7`
-- `debian-10`
-- `debian-10-slim`
-- `debian-11`
-- `debian-11-slim`
-- `ubuntu-23.04`
+- Alpine Linux
+    - `alpine-3.17.3`
+    - `alpine-3.16.5`
+    - `alpine-3.15.8`
+    - `alpine-3.14.10`
+- CentOS
+  - `centos-7`
+- Debian
+  - `debian-10`
+  - `debian-10-slim`
+  - `debian-11`
+  - `debian-11-slim`
+- Ubuntu
+  - `ubuntu-23.04`
 
 ### ${java-distribution}
 The available options to use for this field, at least currently, are:
@@ -101,8 +108,8 @@ interactive console to print the version of Java.
 
 For example, issuing the following commands:
 ```
-> docker pull ghcr.io/iamryusei/java-on-alpine-3.17:zulu-8-jre
-> docker run --rm ghcr.io/iamryusei/java-on-alpine-3.17:zulu-8-jre
+> docker pull ghcr.io/iamryusei/java-on-alpine-3.17.3:zulu-8-jre
+> docker run --rm ghcr.io/iamryusei/java-on-alpine-3.17.3:zulu-8-jre
 ```
 
 Will produce the following output:
@@ -122,7 +129,7 @@ image is required) and executed inside the container.
 
 First create the `Dockerfile` with the following content:
 ```Dockerfile
-FROM ghcr.io/iamryusei/java-on-alpine-3.17:zulu-8-jdk
+FROM ghcr.io/iamryusei/java-on-alpine-3.17.3:zulu-8-jdk
 
 WORKDIR /opt/helloworld/
 RUN echo "public class HelloWorld {             \
