@@ -52,21 +52,25 @@ It the next paragraphs it will be explained in details which are the possible va
 
 ### ${base-image}
 The available options to use for this field, at least currently, are:
-- Alpine Linux
-    - `alpine-3.18.0`
-    - `alpine-3.17.3`
-    - `alpine-3.16.5`
-    - `alpine-3.15.8`
-    - `alpine-3.14.10`
-- CentOS
-  - `centos-7`
-- Debian
-  - `debian-10`
-  - `debian-10-slim`
-  - `debian-11`
-  - `debian-11-slim`
-- Ubuntu
-  - `ubuntu-23.04`
+- Alpine Linux ([Official Image](https://hub.docker.com/_/alpine))
+    - `alpine-3.18.0` ([link](https://hub.docker.com/layers/library/alpine/3.18.0/images/sha256-c0669ef34cdc14332c0f1ab0c2c01acb91d96014b172f1a76f3a39e63d1f0bda?context=explore))
+    - `alpine-3.17.3` ([link](https://hub.docker.com/layers/library/alpine/3.17.3/images/sha256-b6ca290b6b4cdcca5b3db3ffa338ee0285c11744b4a6abaa9627746ee3291d8d?context=explore))
+    - `alpine-3.17.2` ([link](https://hub.docker.com/layers/library/alpine/3.17.2/images/sha256-c41ab5c992deb4fe7e5da09f67a8804a46bd0592bfdf0b1847dde0e0889d2bff?context=explore))
+    - `alpine-3.17.1` ([link](https://hub.docker.com/layers/library/alpine/3.17.1/images/sha256-93d5a28ff72d288d69b5997b8ba47396d2cbb62a72b5d87cd3351094b5d578a0?context=explore))
+    - `alpine-3.17.0` ([link](https://hub.docker.com/layers/library/alpine/3.17.0/images/sha256-c0d488a800e4127c334ad20d61d7bc21b4097540327217dfab52262adc02380c?context=explore))
+    - `alpine-3.16.5` ([link](https://hub.docker.com/layers/library/alpine/3.16.5/images/sha256-8ef0049c5c2be88227e237a18458b2d63ac324f41f3a528d16d4569cea0422c1?context=explore))
+    - `alpine-3.15.8` ([link](https://hub.docker.com/layers/library/alpine/3.15.8/images/sha256-82389ea44e50c696aba18393b168a833929506f5b29b9d75eb817acceb6d54ba?context=explore))
+    - `alpine-3.14.10` ([link](https://hub.docker.com/layers/library/alpine/3.14.10/images/sha256-71859b0c62df47efaeae4f93698b56a8dddafbf041778fd668bbd1ab45a864f8?context=explore))
+- CentOS ([Official Image](https://hub.docker.com/_/centos))
+  - `centos-7.9.2009` ([link](https://hub.docker.com/layers/library/centos/7.9.2009/images/sha256-dead07b4d8ed7e29e98de0f4504d87e8880d4347859d839686a31da35a3b532f?context=explore))
+- Debian ([Official Image](https://hub.docker.com/_/debian))
+  - `debian-11.7` ([link](https://hub.docker.com/layers/library/debian/11.7/images/sha256-1bf0e24813ee8306c3fba1fe074793eb91c15ee580b61fff7f3f41662bc0031d?context=explore))
+  - `debian-11.7-slim` ([link](https://hub.docker.com/layers/library/debian/11.7-slim/images/sha256-ac707220fbd7b67fc19b112cee8170b41a9e97f703f588b2cdbbcdcecdd8af57?context=explore))
+  - `debian-10.13` ([link](https://hub.docker.com/layers/library/debian/10.13/images/sha256-a067a9e8b39d5f19659b3bc9fd4348f6319afabd0d6ba1fe3b43df108926ea92?context=explore))
+  - `debian-10.13-slim` ([link](https://hub.docker.com/layers/library/debian/10.13-slim/images/sha256-9d0fb5b9d5318bf507d4507fc846e36a55de7a1198bfc63cf12a2f7c99011efa?context=explore))
+- Ubuntu ([Official Image](https://hub.docker.com/_/ubuntu)) 
+  - `ubuntu-23.10` ([link](https://hub.docker.com/layers/library/ubuntu/23.10/images/sha256-3853398d8cefdc1c02ca82cd809ab3ab3851728da0de68325389b7e53eb26acd?context=explore))
+  - `ubuntu-23.04` ([link](https://hub.docker.com/layers/library/ubuntu/23.04/images/sha256-ce7f6664be1081be78dfcf319cb11d7bceeef17b32df373282a66fe940e47f6d?context=explore))
 
 ### ${java-distribution}
 The available options to use for this field, at least currently, are:
