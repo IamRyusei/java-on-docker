@@ -1,5 +1,5 @@
 # Java on Docker
-A collection of Docker images that provides multiple distributions and versions of the Java platform binaries (JRE/JDK) for different base images.
+Collection of Docker images that provides multiple distributions and versions of the Java platform binaries (JRE/JDK) for different base images.
 
 [![Build and Deploy Docker Images](https://github.com/iamryusei/java-on-docker/actions/workflows/continous-delivery.yml/badge.svg)](https://github.com/iamryusei/java-on-docker/actions/workflows/continous-delivery.yml)
 
