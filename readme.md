@@ -1,10 +1,10 @@
 # Java on Docker
 Collection of Docker images that provides multiple distributions and versions of the Java platform binaries (JRE/JDK) for different base images.
 
-[![Build and Deploy (Alpine)](https://github.com/iamryusei/java-on-docker/actions/workflows/continous-delivery-alpine.yml/badge.svg)](https://github.com/iamryusei/java-on-docker/actions/workflows/continous-delivery-alpine.yml)
-[![Build and Deploy (CentOS)](https://github.com/iamryusei/java-on-docker/actions/workflows/continous-delivery-centos.yml/badge.svg)](https://github.com/iamryusei/java-on-docker/actions/workflows/continous-delivery-centos.yml)
-[![Build and Deploy (Debian)](https://github.com/iamryusei/java-on-docker/actions/workflows/continous-delivery-debian.yml/badge.svg)](https://github.com/iamryusei/java-on-docker/actions/workflows/continous-delivery-debian.yml)
-[![Build and Deploy (Ubuntu)](https://github.com/iamryusei/java-on-docker/actions/workflows/continous-delivery-ubuntu.yml/badge.svg)](https://github.com/iamryusei/java-on-docker/actions/workflows/continous-delivery-ubuntu.yml)
+[![Build and Deploy (Alpine)](https://github.com/iamryusei/java-on-docker/actions/workflows/continous-delivery-alpine.yml/badge.svg)](https://github.com/iamryusei/java-on-docker/actions/workflows/continous-delivery-alpine.yml)\
+[![Build and Deploy (CentOS)](https://github.com/iamryusei/java-on-docker/actions/workflows/continous-delivery-centos.yml/badge.svg)](https://github.com/iamryusei/java-on-docker/actions/workflows/continous-delivery-centos.yml)\
+[![Build and Deploy (Debian)](https://github.com/iamryusei/java-on-docker/actions/workflows/continous-delivery-debian.yml/badge.svg)](https://github.com/iamryusei/java-on-docker/actions/workflows/continous-delivery-debian.yml)\
+[![Build and Deploy (Ubuntu)](https://github.com/iamryusei/java-on-docker/actions/workflows/continous-delivery-ubuntu.yml/badge.svg)](https://github.com/iamryusei/java-on-docker/actions/workflows/continous-delivery-ubuntu.yml)\
 
 The purpose of this repository is to provide a collection of Docker images that can be used as a base to build Java applications
 or workflows. It is possible to pull the images directly from a remote repository to create your container, or to use them as a
