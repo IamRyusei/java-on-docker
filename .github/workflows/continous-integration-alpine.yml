@@ -1,0 +1,84 @@
+# Author: Leonardo Spaccini <leonardo.spaccini.gtr@gmail.com>
+
+name: Test Pull Request (Alpine)
+on:
+  pull_request:
+    branches: 
+      - master
+    types: 
+      - opened
+      - reopened
+    paths:
+      - '.github/workflows/continous-integration-alpine.yml'
+      - '.github/workflows/matrix-alpine.json'
+      - 'src/alpine/Dockerfile'
+      - 'test/container-test.yml'
+jobs:
+  prepare-build-matrix:
+    runs-on: ubuntu-22.04
+    outputs:
+      matrix: ${{steps.load-matrix-from-file.outputs.matrix}}
+    steps:
+    - 
+      id: checkout
+      uses: actions/checkout@v3.3.0
+    - 
+      id: load-matrix-from-file
+      uses: JoshuaTheMiller/conditional-build-matrix@v1.0.1
+      with:
+          inputFile: .github/workflows/matrix-alpine.json
+          addInclude: true
+          filter: '[*]'
+  build-and-test:
+    runs-on: ubuntu-22.04
+    needs: prepare-build-matrix
+    strategy:
+      fail-fast: true
+      matrix: ${{fromJson(needs.prepare-build-matrix.outputs.matrix)}}
+    steps:
+      - 
+        id: checkout
+        uses: actions/checkout@v3.3.0
+      - 
+        id: prepare-docker-image-tag
+        name: Prepare Docker Image Tag
+        run: |-
+          echo "DOCKER_IMAGE_NAME=${{github.actor}}/java-on-${{matrix.BASE_IMAGE_REGISTRY}}-${{matrix.BASE_IMAGE_TAG}}:${{matrix.JAVA_PLATFORM_NAME}}" >> $GITHUB_ENV
+      - 
+        id: setup-docker-buildx
+        uses: docker/setup-buildx-action@v2
+      - 
+        id: setup-docker-cache
+        uses: actions/cache@v3
+        with:
+          path: /tmp/.buildx-cache
+          key: ${{runner.os}}-docker-buildx-${{matrix.BASE_IMAGE_REGISTRY}}-${{matrix.BASE_IMAGE_TAG}}-${{matrix.JAVA_PLATFORM_NAME}}-${{github.sha}}
+          restore-keys: |
+            ${{runner.os}}-docker-buildx-${{matrix.BASE_IMAGE_REGISTRY}}-${{matrix.BASE_IMAGE_TAG}}-${{matrix.JAVA_PLATFORM_NAME}}-
+            ${{runner.os}}-docker-buildx-${{matrix.BASE_IMAGE_REGISTRY}}-${{matrix.BASE_IMAGE_TAG}}-
+      - 
+        id: build-docker-image
+        uses: docker/build-push-action@v4
+        with:
+          tags: ${{env.DOCKER_IMAGE_NAME}}
+          context: ./src/${{matrix.BASE_IMAGE_REGISTRY}}
+          build-args: |-
+            BASE_IMAGE_TAG=${{matrix.BASE_IMAGE_TAG}}
+            JAVA_PLATFORM_NAME=${{matrix.JAVA_PLATFORM_NAME}}
+            JAVA_DOWNLOAD_URL=${{matrix.JAVA_DOWNLOAD_URL}}
+            JAVA_CHECKSUM_SHA256=${{matrix.JAVA_CHECKSUM_SHA256}}
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache-latest,mode=min
+          load: true
+          push: false
+      - 
+        id: test-docker-image
+        uses: brpaz/structure-tests-action@v1.1.2
+        with:
+          image: ${{env.DOCKER_IMAGE_NAME}}
+          configFile: test/container-test.yml
+      - 
+        id: clear-old-cache
+        run: |
+          rm -rf /tmp/.buildx-cache
+          mv /tmp/.buildx-cache-latest /tmp/.buildx-cache

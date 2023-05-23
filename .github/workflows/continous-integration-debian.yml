@@ -1,6 +1,6 @@
 # Author: Leonardo Spaccini <leonardo.spaccini.gtr@gmail.com>
 
-name: Test Pull Request
+name: Test Pull Request (Debian)
 on:
   pull_request:
     branches: 
@@ -8,6 +8,11 @@ on:
     types: 
       - opened
       - reopened
+    paths:
+      - '.github/workflows/continous-integration-debian.yml'
+      - '.github/workflows/matrix-debian.json'
+      - 'src/debian/Dockerfile'
+      - 'test/container-test.yml'
 jobs:
   prepare-build-matrix:
     runs-on: ubuntu-22.04
@@ -21,7 +26,7 @@ jobs:
       id: load-matrix-from-file
       uses: JoshuaTheMiller/conditional-build-matrix@v1.0.1
       with:
-          inputFile: .github/workflows/matrix_includes.json
+          inputFile: .github/workflows/matrix-debian.json
           addInclude: true
           filter: '[*]'
   build-and-test:

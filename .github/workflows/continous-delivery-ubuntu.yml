@@ -1,13 +1,15 @@
 # Author: Leonardo Spaccini <leonardo.spaccini.gtr@gmail.com>
 
-name: Build and Deploy Docker Images
+name: Build and Deploy Docker Images (Ubuntu)
 on:
   push:
     branches:
       - master
-    paths-ignore:
-      - 'readme.md'
-      - 'license.txt'
+    paths:
+      - '.github/workflows/continous-delivery-ubuntu.yml'
+      - '.github/workflows/matrix-ubuntu.json'
+      - 'src/ubuntu/Dockerfile'
+      - 'test/container-test.yml'
 jobs:
   prepare-build-matrix:
     runs-on: ubuntu-22.04
@@ -21,7 +23,7 @@ jobs:
       id: load-matrix-from-file
       uses: JoshuaTheMiller/conditional-build-matrix@v1.0.1
       with:
-          inputFile: .github/workflows/matrix_includes.json
+          inputFile: .github/workflows/matrix-ubuntu.json
           addInclude: true
           filter: '[*]'
   build-and-deploy:
