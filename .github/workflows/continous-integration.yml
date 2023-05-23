@@ -41,10 +41,10 @@ jobs:
           echo "DOCKER_IMAGE_NAME=${{github.actor}}/java-on-${{matrix.BASE_IMAGE_REGISTRY}}-${{matrix.BASE_IMAGE_TAG}}:${{matrix.JAVA_PLATFORM_NAME}}" >> $GITHUB_ENV
       - 
         id: setup-docker-buildx
-        uses: docker/setup-buildx-action@v1
+        uses: docker/setup-buildx-action@v2
       - 
         id: setup-docker-cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: /tmp/.buildx-cache
           key: ${{runner.os}}-docker-buildx-${{matrix.BASE_IMAGE_REGISTRY}}-${{matrix.BASE_IMAGE_TAG}}-${{matrix.JAVA_PLATFORM_NAME}}-${{github.sha}}
@@ -53,7 +53,7 @@ jobs:
             ${{runner.os}}-docker-buildx-${{matrix.BASE_IMAGE_REGISTRY}}-${{matrix.BASE_IMAGE_TAG}}-
       - 
         id: build-docker-image
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v4
         with:
           tags: ${{env.DOCKER_IMAGE_NAME}}
           context: ./src/${{matrix.BASE_IMAGE_REGISTRY}}
