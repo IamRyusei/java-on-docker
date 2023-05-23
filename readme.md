@@ -53,6 +53,7 @@ It the next paragraphs it will be explained in details which are the possible va
 ### ${base-image}
 The available options to use for this field, at least currently, are:
 - Alpine Linux
+    - `alpine-3.18.0`
     - `alpine-3.17.3`
     - `alpine-3.16.5`
     - `alpine-3.15.8`
