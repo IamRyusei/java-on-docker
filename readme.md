@@ -12,8 +12,8 @@ base image that can be customized in a custom Dockerfile.
 
 _...but why would a repository bother to provide so many combinations of Java flavours as Docker images?_
 
-The first reason is that many publicly available Docker images that provides Java don't actually provide
-a lot of choice in terms of which Java vendor is provided (with most of them being vendor-specific images),
+The first reason is that ~~the author has OCD~~ many publicly available Docker images that provides Java don't 
+actually provide a lot of choice in terms of which Java vendor is provided (with most of them being vendor-specific images),
 or which base OS is used, and offers a narrow range of Java versions to select from. Sometimes is not even
 possible to pick just a JRE over a JDK, or vice versa.
 
